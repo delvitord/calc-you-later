@@ -74,7 +74,7 @@ double square(){
 		if(read_operator == '^'){ // jika read_operator (:)
 			math.num_operator = '^'; // char num_operator diisi oleh char read_operator (:)
 			CheckAndGetChar('^'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			temp = pow(factor(),3); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
+			temp = pow(temp,factor()); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
 		 push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
 		}
 	}
