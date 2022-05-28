@@ -18,7 +18,7 @@ void CheckAndGetChar(char math_opr){ // melakukan cek apakah inputan valid dan m
 		read_operator = getchar(); //read operator agar operasi bilangan dapat dilakukan pada sum(), term(), dan factor() sehingga proses perhitungan dapat dilakukan
 	}
 
-// urutan program : faktor (cek kondisi) >> term (kali dan bagi) >> sum (tambah dan kurang)
+// urutan program : faktor (cek kondisi) >> square (pangkat) >> term (kali dan bagi) >> sum (tambah dan kurang)
 
 /* push data in the stack with the method of post-fix
    calculate addition and subtraction */
@@ -47,7 +47,7 @@ double sum(){ // fungsi (+) dan (-)
  * calculate multiple and devision
  */
 double term(){ // fungsi (*) dan (/)
-	double temp = square(); // temp akan diisi nilai term ((*) dan (:)) sebagai operasi pertama yang dilakukan karena term dikerjakan duluan pada operasi matematika
+	double temp = square(); // temp akan diisi nilai square (^) sebagai operasi kedua yang dilakukan karena square dikerjakan duluan pada operasi matematika
 	Operation math; // math (double number dan char num_operator)
 	while(read_operator == '*' || read_operator == '/'){ //read_operator yang valid adalah (*) dan (:)
 		if(read_operator == '*'){ // jika read_operator (*)
@@ -67,12 +67,12 @@ double term(){ // fungsi (*) dan (/)
 	return temp; // return nilai temp yang valuenya telah di update dengan term
 }
 
-double square(){
-	double temp = factor(); // temp akan diisi nilai term ((*) dan (:)) sebagai operasi pertama yang dilakukan karena term dikerjakan duluan pada operasi matematika
+double square(){ // fungsi untuk operasi perpangkatan
+	double temp = factor(); // temp akan diisi nilai factor (cek syarat) sebagai operasi pertama yang dilakukan karena factor dikerjakan duluan pada operasi matematika
 	Operation math; // math (double number dan char num_operator)
-	while(read_operator == '^'){
-		if(read_operator == '^'){ // jika read_operator (:)
-			math.num_operator = '^'; // char num_operator diisi oleh char read_operator (:)
+	while(read_operator == '^'){ //read_operator yang valid adalah (^) 
+		if(read_operator == '^'){ // jika read_operator (^)
+			math.num_operator = '^'; // char num_operator diisi oleh char read_operator (^)
 			CheckAndGetChar('^'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
 			temp = pow(temp,factor()); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
 		 push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)

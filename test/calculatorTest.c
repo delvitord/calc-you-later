@@ -63,7 +63,7 @@ int main(){
     return 0;
 }
 
-// urutan program : faktor (cek kondisi) >> term (kali dan bagi) >> sum (tambah dan kurang)
+// urutan program : faktor (cek kondisi) >> square (pangkat) >> term (kali dan bagi) >> sum (tambah dan kurang)
 
 /* push data in the stack with the method of post-fix
    calculate addition and subtraction */
