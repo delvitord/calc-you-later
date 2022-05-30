@@ -6,3 +6,5 @@ Repositori ini menampung tugas besar mata kuliah Struktur Data dan Algoritma Kel
 26/05/2022 update pemisahan bagian pada calculatorTest menjadi 3 bagian (calculatorMain.h, calculatorMain.c, calculatorTest.c)
 
 28/05/2022 update operasi perpangkatan telah bekerja 100% 
+
+30/05/2022 update fungsi konversi biner to decimal (vice versa) telah bekerja 100%, program telah 100% selesai.
