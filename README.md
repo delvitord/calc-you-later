@@ -12,3 +12,6 @@ update: operasi perpangkatan telah bekerja 100%
 
 30/05/2022
 update: fungsi konversi biner to decimal (vice versa) telah bekerja 100%, program telah 100% selesai.
+
+01/06/2022
+update: tambahan fungsi akar kuadrat dan akar kubik
