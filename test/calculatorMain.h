@@ -9,10 +9,11 @@
 //Fungsi utama Kalkulator dan fungsi tambahan minor
 void InputError();
 void CheckAndGetChar(char math_opr);
-double term();
-double sum();
-double square();
-double factor();
+double term(); // fungsi perkalian
+double sum(); // fungsi penjumlahan
+double square(); // fungsi perpangkatan
+double sroot(); // fungsi akar
+double factor(); // fungsi lainnya
 
 //Fungsi tambahan major kalkulator
 

@@ -94,20 +94,13 @@ void mainCalculator(){
     puts("");
     printf("Hasil Operasi : %g\n\n", value);
     
-    printf("Ingin merubahnya ke dalam bentuk biner? (Y untuk lanjutkan): ", value);
+    printf("Ingin merubahnya ke dalam bentuk desimal? (Y untuk lanjutkan): ", value);
     dump = getchar();
     char isToBiner = getchar();
     if (isToBiner = 'Y'){
     	int toBiner = value;
     	decToBin(toBiner);
 	}
-    
-    
-    
-	
-	/// delete
-    deleteAll(P);
-    return 0;
 }
 
 void binToDec(){
@@ -160,21 +153,3 @@ void decToBin(int desimal){
 	cetakstackBiner(toBin);
 	printf("\n\n");
 }
-
-// urutan program : faktor (cek kondisi) >> square (pangkat) >> term (kali dan bagi) >> sum (tambah dan kurang)
-
-/* push data in the stack with the method of post-fix
-   calculate addition and subtraction */
-double sum(); // fungsi (+) dan (-)
-
-/** \brief
- * push data in the stack with the method of post-fix
- * calculate multiple and devision
- */
-double term(); // fungsi (+) dan (-)
-
-/** \brief
- * push data in the stack with the method of post-fix
- * regards factor as a number
- */
-double factor(); // fungsi untuk operasi lainnya
