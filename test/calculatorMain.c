@@ -47,19 +47,19 @@ double sum(){ // fungsi (+) dan (-)
  * calculate multiple and devision
  */
 double term(){ // fungsi (*) dan (/)
-	double temp = sroot(); // temp akan diisi nilai square (^) sebagai operasi kedua yang dilakukan karena square dikerjakan duluan pada operasi matematika
+	double temp = sroot(); // temp akan diisi nilai sroot (v) sebagai operasi ketiga yang dilakukan karena sroot dikerjakan duluan pada operasi matematika
 	Operation math; // math (double number dan char num_operator)
 	while(read_operator == '*' || read_operator == '/'){ //read_operator yang valid adalah (*) dan (:)
 		if(read_operator == '*'){ // jika read_operator (*)
 			math.num_operator = '*'; // char num_operator diisi oleh char read_operator (*)
 			CheckAndGetChar('*'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			temp *= sroot(); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
+			temp *= sroot(); // agar dapat dilakukan akar terlebih dahulu pada sroot jika sroot akan dieksekusi terlebih dahulu
 			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
 		}
 		else if(read_operator == '/'){ // jika read_operator (:)
 			math.num_operator = '/'; // char num_operator diisi oleh char read_operator (:)
 			CheckAndGetChar('/'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			temp /= sroot(); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
+			temp /= sroot(); // agar dapat dilakukan akar terlebih dahulu pada sroot jika sroot akan dieksekusi terlebih dahulu
 			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
 		}
 		
@@ -89,20 +89,20 @@ double square(){ // fungsi untuk operasi perpangkatan
  * push data in the stack with the method of post-fix
  * calculate multiple and devision
  */
-double sroot(){ // fungsi untuk operasi perpangkatan
-	double temp = square(); // temp akan diisi nilai factor (cek syarat) sebagai operasi pertama yang dilakukan karena factor dikerjakan duluan pada operasi matematika
+double sroot(){ // fungsi untuk operasi akar
+	double temp = square(); // temp akan diisi nilai square (kuadrat) sebagai operasi kedua yang dilakukan karena square dikerjakan duluan pada operasi matematika
 	Operation math; // math (double number dan char num_operator)
-	while(read_operator == 's'|| read_operator == 'c'){ //read_operator yang valid adalah (^), (v) , (!)  
-		if(read_operator == 's'){ // jika read_operator (^)
-			math.num_operator = 's'; // char num_operator diisi oleh char read_operator (^)
+	while(read_operator == 's'|| read_operator == 'c'){ //read_operator yang valid adalah (s) square, (c) cubic
+		if(read_operator == 's'){ // jika read_operator (s)
+			math.num_operator = 's'; // char num_operator diisi oleh char read_operator (s)
 			CheckAndGetChar('s'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			temp = sqrt(temp); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
+			temp = sqrt(temp); // temp diisi nilai akar kuadrat dari temp yang sebelumnya (square())
 			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
 		}
-		if(read_operator == 'c'){ // jika read_operator (^)
-			math.num_operator = 'c'; // char num_operator diisi oleh char read_operator (^)
+		if(read_operator == 'c'){ // jika read_operator (c)
+			math.num_operator = 'c'; // char num_operator diisi oleh char read_operator (c)
 			CheckAndGetChar('c'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			temp = cbrt(temp); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
+			temp = cbrt(temp); // temp diisi nilai akar kubik dari temp yang sebelumnya (square())
 			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
 		}
  }
