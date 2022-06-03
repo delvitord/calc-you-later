@@ -14,6 +14,7 @@ double sum(); // fungsi penjumlahan
 double square(); // fungsi perpangkatan
 double sroot(); // fungsi akar
 double factor(); // fungsi lainnya
+double factorial(); // fungsi faktorial
 
 //Fungsi tambahan major kalkulator
 
