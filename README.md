@@ -17,4 +17,4 @@ update: fungsi konversi biner to decimal (vice versa) telah bekerja 100%, progra
 update: tambahan fungsi akar kuadrat dan akar kubik
 
 04/06/2022
-update: tambahan fungsi trigonometri sin, cos, tan
+update: tambahan fungsi trigonometri (sin, cos, tan) serta logaritma
