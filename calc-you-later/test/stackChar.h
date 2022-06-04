@@ -28,10 +28,9 @@ void createstackChar(stackChar *s);
 addressChar alokasiChar(char x); 
 void dealokasiChar(addressChar p); 
 void pushChar(stackChar *s, char x); 
-void popChar(stackChar *s, char *x); 
+char popChar(stackChar *s); 
 void cetakstackChar(stackChar s); 
 boolean isstackChar_empty(stackChar s); 
-
 #endif
 
 

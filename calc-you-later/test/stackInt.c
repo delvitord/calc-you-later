@@ -46,10 +46,10 @@ void pushInt(stackInt *s, int x){
 	} 
 	(*s).jumlahTumpukan += 1;
 } 
-void popInt(stackInt *s, int *x){ 
+int popInt(stackInt *s){ 
 	addressInt pTOP; 
 	pTOP = top(*s); 
-	*x = info(pTOP); 
+	int x = info(pTOP); 
 	if(prev(pTOP) == nil){ // hanya ada 1 elemen 
 		top(*s) = nil; 
 	} else { // lebih dari satu elemen 
@@ -57,6 +57,7 @@ void popInt(stackInt *s, int *x){
 		prev(pTOP) = nil; 
 	} 
 	(*s).jumlahTumpukan -= 1;
+	return x;
 } 
 void cetakstackInt(stackInt s){ 
 	tabstackInt *p, *q; 

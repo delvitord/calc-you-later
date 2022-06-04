@@ -67,48 +67,11 @@ double term(){ // fungsi (*) dan (/)
 	return temp; // return nilai temp yang valuenya telah di update dengan term
 }
 
-/** \brief
- * push data in the stack with the method of post-fix
- * calculate multiple and devision
- */
-double square(){ // fungsi untuk operasi perpangkatan
-	double temp = factor(); // temp akan diisi nilai factor (cek syarat)
-	Operation math; // math (double number dan char num_operator)
-	while(read_operator == '^'){ //read_operator yang valid adalah (^), (v) , (!)  
-		if(read_operator == '^'){ // jika read_operator (^)
-			math.num_operator = '^'; // char num_operator diisi oleh char read_operator (^)
-			CheckAndGetChar('^'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			temp = pow(temp,factor()); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
-			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
-		}
- }
-	return temp; // return nilai temp yang valuenya telah di update dengan term
-}
 
 /** \brief
  * push data in the stack with the method of post-fix
  * calculate multiple and devision
  */
-double sroot(){ // fungsi untuk operasi akar
-	double temp = square(); // temp akan diisi nilai square (kuadrat)
-	Operation math; // math (double number dan char num_operator)
-	while(read_operator == 's'|| read_operator == 'c'){ //read_operator yang valid adalah (s) square, (c) cubic
-		if(read_operator == 's'){ // jika read_operator (s)
-			math.num_operator = 's'; // char num_operator diisi oleh char read_operator (s)
-			CheckAndGetChar('s'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			temp = sqrt(temp); // temp diisi nilai akar kuadrat dari temp yang sebelumnya (square())
-			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
-		}
-		if(read_operator == 'c'){ // jika read_operator (c)
-			math.num_operator = 'c'; // char num_operator diisi oleh char read_operator (c)
-			CheckAndGetChar('c'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			temp = cbrt(temp); // temp diisi nilai akar kubik dari temp yang sebelumnya (square())
-			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
-		}
- }
-	return temp; // return nilai temp yang valuenya telah di update dengan term
-}
-
 double trigonometry(){ // fungsi untuk trigonometri
 	double temp = sroot(); //// temp akan diisi nilai sroot (akar)
 	Operation math; // math (double number dan char num_operator)
@@ -139,6 +102,44 @@ double trigonometry(){ // fungsi untuk trigonometri
 	}
  }
 	return temp;
+}
+
+double sroot(){ // fungsi untuk operasi akar
+	double temp = square(); // temp akan diisi nilai square (kuadrat)
+	Operation math; // math (double number dan char num_operator)
+	while(read_operator == 's'|| read_operator == 'c'){ //read_operator yang valid adalah (s) square, (c) cubic
+		if(read_operator == 's'){ // jika read_operator (s)
+			math.num_operator = 's'; // char num_operator diisi oleh char read_operator (s)
+			CheckAndGetChar('s'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
+			temp = sqrt(temp); // temp diisi nilai akar kuadrat dari temp yang sebelumnya (square())
+			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
+		}
+		if(read_operator == 'c'){ // jika read_operator (c)
+			math.num_operator = 'c'; // char num_operator diisi oleh char read_operator (c)
+			CheckAndGetChar('c'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
+			temp = cbrt(temp); // temp diisi nilai akar kubik dari temp yang sebelumnya (square())
+			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
+		}
+ }
+	return temp; // return nilai temp yang valuenya telah di update dengan term
+}
+
+/** \brief
+ * push data in the stack with the method of post-fix
+ * calculate multiple and devision
+ */
+double square(){ // fungsi untuk operasi perpangkatan
+	double temp = factor(); // temp akan diisi nilai factor (cek syarat)
+	Operation math; // math (double number dan char num_operator)
+	while(read_operator == '^'){ //read_operator yang valid adalah (^), (v) , (!)  
+		if(read_operator == '^'){ // jika read_operator (^)
+			math.num_operator = '^'; // char num_operator diisi oleh char read_operator (^)
+			CheckAndGetChar('^'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
+			temp = pow(temp,factor()); // agar dapat dilakukan pengecekan terlebih dahulu pada faktor karena faktor akan dieksekusi terlebih dahulu
+			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
+		}
+ }
+	return temp; // return nilai temp yang valuenya telah di update dengan term
 }
 
 /** \brief
@@ -178,18 +179,4 @@ double factor(){ // fungsi untuk operasi lainnya
 	return temp; // mengembalikan nilai temp sesuai yang diisikan user
 }
 
-double factorial(){ //catatan: Untuk sementara belum dapat membaca operasi faktorial
-	double temp = sroot(); // temp akan diisi nilai sroot (akar)
-	Operation math; //math (double number dan char num_operator)
-	while (read_operator == '!'){ //read_operator yang valid adalah (!)
-		if (read_operator == '!'){ // jika read_operator (!)
-			math.num_operator = '!'; // char num_operator diisi oleh char read_operator (!)
-			CheckAndGetChar('!'); //melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
-			if(temp == 0){ //jika nilai temp = 0
-				return 1; //return nilai 1
-			}
-			temp = temp*factorial(temp-1); //lakukan rekursi, isi nilai temp saat ini dengan nilai itu sendiri dikali nilai return faktorial, dengan nilai temp sekarang dikurangi 1
-			push(stack, math, TRUE); //push (ke top, math (number dan num_operator), TRUE(1) isChar)
-		}
-	}
-}
+

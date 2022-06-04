@@ -39,11 +39,10 @@ void pushChar(stackChar *s, char x){
 	} 
 	(*s).jumlahTumpukan += 1;
 } 
-void popChar(stackChar *s, char *x){  
+char popChar(stackChar *s){  
 	addressChar pTOP; 
-
 	pTOP = top(*s); 
-	*x = info(pTOP); 
+	char x = info(pTOP); 
 	if(prev(pTOP) == nil){ // hanya ada 1 elemen 
 		top(*s) = nil; 
 	} else { // lebih dari satu elemen 
@@ -51,6 +50,7 @@ void popChar(stackChar *s, char *x){
 		prev(pTOP) = nil; 
 	} 
 	(*s).jumlahTumpukan -= 1;
+	return x;
 } 
 void cetakstackChar(stackChar s){ 
 	tabstackChar *p, *q; 
@@ -75,5 +75,7 @@ boolean isstackChar_empty(stackChar s){
 		return false; 
 	} 
 } 
+
+
 
 

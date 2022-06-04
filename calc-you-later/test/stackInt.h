@@ -28,7 +28,7 @@ void createstackInt (stackInt *s);
 addressInt alokasiInt (int x); 
 void dealokasiInt (addressInt p); 
 void pushInt (stackInt *s, int x); 
-void popInt(stackInt *s, int *x); 
+int popInt(stackInt *s); 
 void cetakstackInt(stackInt s); 
 void cetakstackBiner(stackInt s);
 boolean isstackInt_empty(stackInt s); 
