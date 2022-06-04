@@ -177,3 +177,19 @@ double factor(){ // fungsi untuk operasi lainnya
 	else InputError(); // jika terjadi kesalahan inputan
 	return temp; // mengembalikan nilai temp sesuai yang diisikan user
 }
+
+double factorial(){ //catatan: Untuk sementara belum dapat membaca operasi faktorial
+	double temp = sroot();
+	Operation math;
+	while (read_operator == '!'){
+		if (read_operator == '!'){
+			math.num_operator = '!';
+			CheckAndGetChar('!');
+			if(temp == 0){
+				return 1;
+			}
+			temp = temp*factorial(temp-1);
+			push(stack, math, TRUE);
+		}
+	}
+}
