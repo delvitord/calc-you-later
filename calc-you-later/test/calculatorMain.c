@@ -179,17 +179,17 @@ double factor(){ // fungsi untuk operasi lainnya
 }
 
 double factorial(){ //catatan: Untuk sementara belum dapat membaca operasi faktorial
-	double temp = sroot();
-	Operation math;
-	while (read_operator == '!'){
-		if (read_operator == '!'){
-			math.num_operator = '!';
-			CheckAndGetChar('!');
-			if(temp == 0){
-				return 1;
+	double temp = sroot(); // temp akan diisi nilai sroot (akar)
+	Operation math; //math (double number dan char num_operator)
+	while (read_operator == '!'){ //read_operator yang valid adalah (!)
+		if (read_operator == '!'){ // jika read_operator (!)
+			math.num_operator = '!'; // char num_operator diisi oleh char read_operator (!)
+			CheckAndGetChar('!'); //melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
+			if(temp == 0){ //jika nilai temp = 0
+				return 1; //return nilai 1
 			}
-			temp = temp*factorial(temp-1);
-			push(stack, math, TRUE);
+			temp = temp*factorial(temp-1); //lakukan rekursi, isi nilai temp saat ini dengan nilai itu sendiri dikali nilai return faktorial, dengan nilai temp sekarang dikurangi 1
+			push(stack, math, TRUE); //push (ke top, math (number dan num_operator), TRUE(1) isChar)
 		}
 	}
 }
