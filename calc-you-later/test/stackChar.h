@@ -1,6 +1,6 @@
 /* 
 * File : stackChar.h 
-* Deskripsi : Header file dari ADT Stack [Linked List] */ 
+* Deskripsi : Header file dari ADT Stack Dinamis yang infotypenya bertipe Char */ 
 
 #ifndef _stackChar_H 
 #define _stackChar_H 

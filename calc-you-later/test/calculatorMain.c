@@ -75,9 +75,9 @@ double term(){ // fungsi (*) dan (/)
 double trigonometry(){ // fungsi untuk trigonometri
 	double temp = sroot(); //// temp akan diisi nilai sroot (akar)
 	Operation math; // math (double number dan char num_operator)
-	while(read_operator == 'i'|| read_operator == 'o'|| read_operator == 'a'|| read_operator == 'l'){ //read_operator yang valid adalah (i) sin, (o) cos, (a) tan, (l) log 
+	while(read_operator == 'i'|| read_operator == 'o'|| read_operator == 'a'|| read_operator == 'l'|| read_operator == 'n'|| read_operator == 'q'|| read_operator == 't'){ //read_operator yang valid adalah (i) sin, (o) cos, (a) tan, (l) log 
 		if(read_operator == 'i'){ // jika read_operator (i)
-			math.num_operator = 'i'; // char num_operator diisi oleh char read_operator (c)
+			math.num_operator = 'i'; // char num_operator diisi oleh char read_operator (i)
 			CheckAndGetChar('i'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
 			temp = sin(temp); // temp diisi nilai sin dari temp yang sebelumnya (sroot())
 			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
@@ -98,6 +98,25 @@ double trigonometry(){ // fungsi untuk trigonometri
 			math.num_operator = 'l'; // char num_operator diisi oleh char read_operator (l)
 			CheckAndGetChar('l'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
 			temp = log10(temp); // temp diisi nilai logaritma dari temp yang sebelumnya (sroot())
+			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
+	}
+	//SIN COS TAN BERUPA SUDUT
+	else if(read_operator == 'n'){ // jika read_operator (n)
+			math.num_operator = 'n'; // char num_operator diisi oleh char read_operator (n)
+			CheckAndGetChar('n'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
+			temp = sin(temp*(M_PI / 180)); // temp diisi nilai sin dari temp yang sebelumnya (sroot())
+			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
+	}
+	else if(read_operator == 'q'){ // jika read_operator (q)
+			math.num_operator = 'q'; // char num_operator diisi oleh char read_operator (q)
+			CheckAndGetChar('q'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
+			temp = cos(temp*(M_PI / 180)); // temp diisi nilai cos dari temp yang sebelumnya (sroot())
+			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
+	}
+	else if(read_operator == 't'){ // jika read_operator (t)
+			math.num_operator = 't'; // char num_operator diisi oleh char read_operator (t)
+			CheckAndGetChar('t'); // melakukan cek apakah inputan valid dan meminta input berupa char yang diakhiri dengan enter
+			temp = tan(temp*(M_PI / 180)); // temp diisi nilai tan dari temp yang sebelumnya (sroot())
 			push(stack, math, TRUE); // push (ke top, math (number dan num_operator), TRUE(1) isChar)
 	}
  }

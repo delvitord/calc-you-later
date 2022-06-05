@@ -1,6 +1,6 @@
 /* 
 * File : stackInt.h 
-* Deskripsi : Header file dari ADT Stack [Linked List] */ 
+* Deskripsi : Header file dari ADT Stack Dinamis yang infotypenya bertipe Int*/ 
 
 #ifndef _stackInt_H 
 #define _stackInt_H 

@@ -1,6 +1,6 @@
 /* 
 * File : stackInt.c 
-* Deskripsi : Body file dari ADT Stack [Linked List] */ 
+* Deskripsi : Body file dari ADT Stack Dinamis yang infotypenya bertipe Int */ 
 
 #include "stackInt.h"
 #include <stdio.h> 
@@ -14,8 +14,7 @@ void createstackInt(stackInt *s){
 	(*s).jumlahTumpukan = 0;
 } 
 
-/* {Opeasi terhadap komponen : selektor Get dan Set} */ 
-//Destruktor or Dealokator 
+
 addressInt alokasiInt(int x){ 
 
 	tabstackInt *p; 

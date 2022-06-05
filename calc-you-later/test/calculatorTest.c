@@ -23,16 +23,17 @@ void gotoxy(int x, int y){
 }
 
 void chooseMenu(){ 
-	int pilihan, desimal;
+	int pilihan;
 	do {
 		system("cls");
 		gotoxy(45,7); printf("============================");
 		gotoxy(45,8);printf("==== CALC - YOU - LATER ===="); 
 		gotoxy(45,9);printf("============================");
-		gotoxy(52,11);printf("1. Calculator"); 
+		gotoxy(52,11);printf("1. Kalkulator"); 
 		gotoxy(49,12);printf("2. Biner ke Desimal"); 
 		gotoxy(49,13);printf("3. Desimal ke Biner"); 
-		gotoxy(54,14);printf("4. Quit"); 
+		gotoxy(53,14);printf("4.  About"); 
+		gotoxy(54,15);printf("5. Exit");
 		gotoxy(48,18);printf("------ Main Menu ------");
 		gotoxy(47,16);printf("Masukkan Pilihan anda : "); 
 		scanf("%d", &pilihan);
@@ -47,14 +48,19 @@ void chooseMenu(){
 			case 3:
 				menu_decToBin();
 				break;
+			case 4:
+				about();
+				break;
 		}
-	} while(pilihan < 4);
-
+	} while(pilihan < 5);
+	
 } 
 
 int main(){
 	/* Menampilkan Menu pada saat program dijalankan */ 
 	chooseMenu(); 
+	system("cls");
+	printf("\n\n	Thank You!\n\n");
 }
 
 void menu_calculator(){
@@ -106,7 +112,7 @@ void menu_calculator(){
     puts("");
     printf("\nHasil Operasi : \n%g\n\n", result);
     
-    if(result > 0){
+    if(result >= 1){
 	    printf("Ingin merubahnya ke dalam bentuk biner? (Klik Y untuk Ya): ");
 	    char isToBiner = getch();
 	    if (isToBiner == 'Y' || isToBiner == 'y'){
@@ -119,10 +125,13 @@ void menu_calculator(){
 	
 	printf("Klik spasi jika ingin memasukkan operasi matematika yang lain: ");
     char isToMenu = getch();
-    isToMenu == ' ' ? menu_calculator() : main();
+    if (isToMenu == ' '){
+    	menu_calculator();
+	}
 }
 
 void menu_binToDec(){
+	//Menu untuk memasukkan bilangan biner dan menampilkan hasil desimalnya
 	system("cls");
 	gotoxy(45,1); printf("============================");
 	gotoxy(45,2);printf("==== CALC - YOU - LATER ===="); 
@@ -135,60 +144,64 @@ void menu_binToDec(){
 	
 	stackChar s; 
 	createstackChar(&s); 
-	char nilai_stack;
+	char nilaiStack;
 	printf("Masukkan bilangan biner: \n");
 	boolean inputSalah = false;
 
-    do {
-    	scanf("%c", &nilai_stack);
-    	if (nilai_stack == '1' || nilai_stack == '0'){	
-    		pushChar(&s, nilai_stack);
-		} else if (nilai_stack != 10) { //10 adalah ASCII untuk enter
+    do {					//Proses input biner ke stack
+    	scanf("%c", &nilaiStack);
+    	if (nilaiStack == '1' || nilaiStack == '0'){	
+    		pushChar(&s, nilaiStack);
+		} else if (nilaiStack != 10) { //jika yang diinput adalah selain 1, 0, dan enter
 			inputSalah = true;
 		}
-	} while (nilai_stack != 10);	//10 adalah ASCII untuk enter
+	} while (nilaiStack != 10);	//10 adalah ASCII untuk enter
 	
 	
-	if (inputSalah == false){
+	if (inputSalah == false){		//inputan benar
 		int hasil = binToDec(s);
 		printf("\nHasil desimalnya adalah:\n");
 		printf("%d\n\n", hasil);
 		printf("Klik spasi jika ingin memasukkan bilangan biner yang lain: ");
 	    char isToMenu = getch();
-	    isToMenu == ' ' ? menu_binToDec() : main();
-	} else {
+	    if (isToMenu == ' '){
+	    	menu_binToDec();
+		}
+	} else {	//inputan salah
 		printf("\nInput yang anda masukkan salah\n");
 		printf("Klik apa saja untuk kembali memasukkan bilangan biner: ");
 	    char isToMenu = getch();
-	    isToMenu == ' ' ? menu_binToDec() : menu_binToDec();
+	 	menu_binToDec();		//kembali lagi memasukkan bilangan biner
 	}
 }
 
 int binToDec(stackChar s){
-	int pilihan, hasil_desimal = 0, nilai_pop2;
-	char nilai_pop1; 
+	//modul pengkonversi bilangan biner ke desimal
+	int pilihan, hasilDesimal = 0, nilaiPop2;
+	char nilaiPop1; 
 	
-	stackInt biner; 
-	createstackInt(&biner); 
+	stackInt duaPangkatN; //Stack yang menampung 2^0 - 2^n
+	createstackInt(&duaPangkatN); 
 	int i = s.jumlahTumpukan;
 	int value;
 	
-	for (i; i >= 0; i--){
+	for (i; i >= 0; i--){	//Pengisian stack dengan 2^0 - 2^n (n = s.jumlahTumpukan - 1)
 		value = pow(2,i);
-		pushInt(&biner, value);
+		pushInt(&duaPangkatN, value);
 	}
 
-	while (s.jumlahTumpukan > 0){
-		nilai_pop1 = popChar(&s);
-		nilai_pop2 = popInt(&biner);
-		if (nilai_pop1 == '1'){
-			hasil_desimal += nilai_pop2;
+	while (s.jumlahTumpukan > 0){	//Proses pop semua tumpukan masing-masing stack
+		nilaiPop1 = popChar(&s);
+		nilaiPop2 = popInt(&duaPangkatN);
+		if (nilaiPop1 == '1'){		//Perhitungan ke desimal
+			hasilDesimal += nilaiPop2;
 		}
 	}
-	return hasil_desimal;
+	return hasilDesimal;
 }
 
 void menu_decToBin(){
+	//Menu untuk memasukkan bilangan desimal dan menampilkan hasil binernya
 	int desimal;
 	system("cls");
 	gotoxy(45,1); printf("============================");
@@ -201,27 +214,30 @@ void menu_decToBin(){
 	gotoxy(0,7);
 	printf("\nMasukkan desimal yang akan dikonversi (Bilangan bulat positif): \n"); 
 	scanf("%d", &desimal);
-	if (desimal > 0){
-		decToBin(desimal);
+	if (desimal > 0){	//Cek kondisi apakah inputan benar
+		decToBin(desimal);		//panggil modul konverter
 		printf("Klik spasi jika ingin konversi bilangan desimal lain: ");
 		char isToMenu = getch();
-		isToMenu == ' ' ? menu_decToBin() : main();
+		if (isToMenu == ' '){
+			menu_decToBin();
+		}
 	} else {
 		printf("\nInput yang anda masukkan salah\n");
 		printf("Klik apa saja untuk kembali memasukkan bilangan bulat positif: ");
 	    char isToMenu = getch();
-	    isToMenu == ' ' ? menu_decToBin() : menu_decToBin();
+	    menu_decToBin();
 	}
 	
 }
 
 void decToBin(int desimal){
-	int hasil_modulus;
-	stackInt toBin; 
+	//modul pengkonversi bilangan desimal ke biner dan menampilkan binernya
+	int hasilModulus;
+	stackInt toBin; 	//stack yang akan menampung hasil binernya (Biner dibaca dari top)
 	createstackInt(&toBin); 
-	while(desimal > 0){
-		hasil_modulus = desimal % 2;
-		pushInt(&toBin, hasil_modulus);
+	while(desimal > 0){	//proses konversi
+		hasilModulus = desimal % 2;
+		pushInt(&toBin, hasilModulus);
 		desimal /= 2;
 	}
 	printf("\nBilangan binernya adalah: \n");
@@ -242,9 +258,9 @@ void printUI(){
 	gotoxy(75,10); printf("'^' untuk pangkat");
 	gotoxy(75,11); printf("'s' untuk akar pangkat dua");
 	gotoxy(75,12); printf("'c' untuk akar pangkat tiga");
-	gotoxy(75,13); printf("'i' untuk sin");
-	gotoxy(75,14); printf("'o' untuk cos");
-	gotoxy(75,15); printf("'a' untuk tan");
+	gotoxy(75,13); printf("'i' untuk sin // 'n' untuk derajat");
+	gotoxy(75,14); printf("'o' untuk cos // 'q' untuk derajat");
+	gotoxy(75,15); printf("'a' untuk tan // 't' untuk derajat");
 	gotoxy(75,16); printf("'l' untuk logaritma");
 	
 	gotoxy(75,18); printf("Operator yang berupa huruf ditulis");
@@ -260,4 +276,28 @@ void printUI(){
 	gotoxy(75,28); printf("6. Tambah dan kurang");
 
 	gotoxy(0,5);
+}
+
+void about(){
+	system("cls");
+	printf("About: \n");
+	printf("Calc-You-Later adalah aplikasi kalkulator yang dibuat oleh kelompok 5 kelas 1B yang\ndidasarkan pada kalkulator konvensional.\n");
+	printf("Calc-You-Later dapat digunakan sebagaimana kalkulator konvensional (dapat menjalankan operasi tambah,\nkurang, kali, bagi, serta beberapa operasi tambahan seperti pangkat, akar, trigonometri, dan sebagainya).\n");
+	printf("Calc-You-Later juga memiliki dua fitur tambahan, yaitu fitur konversi bilangan desimal \nke biner, dan fitur konversi bilangan biner ke desimal.\n");
+	printf("Program ini dirilis pada tanggal 6 Juni 2022 untuk memenuhi Tugas Besar Struktur Data dan Algoritma.\n");
+	printf("\nAuthor:\n");
+	printf("Delvito Rahim Derivansyah\n");
+	printf("Muhammad Rafi Farhan\n");
+	printf("Reihan Hadi Fauzan\n");
+	printf("\n");
+	printf("Dosen Pengampu:\n");
+	printf("Lukmanul Hakim Firdaus, S.Kom, M.T.\n");
+	printf("Asri Maspupah, S.ST., M.T.\n");
+	printf("\n");
+	printf("2022\n");
+	printf("Program Studi D4 Teknik Informatika\n");
+	printf("Jurusan Teknik Komputer dan Informatika\n");
+	printf("Politeknik Negeri Bandung\n");
+	printf("\ncukup? (klik apa saja)");
+	char isToMenu = getch();
 }

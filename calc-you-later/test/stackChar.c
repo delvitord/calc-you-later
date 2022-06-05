@@ -1,6 +1,6 @@
 /* 
 * File : stackChar.c 
-* Deskripsi : Body file dari ADT Stack [Linked List] */ 
+* Deskripsi : Body file dari ADT Stack Dinamis yang infotypenya bertipe Char */ 
 
 #include "stackChar.h"
 #include <stdio.h> 
