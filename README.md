@@ -18,3 +18,6 @@ update: tambahan fungsi akar kuadrat dan akar kubik
 
 04/06/2022
 update: tambahan fungsi trigonometri (sin, cos, tan) serta logaritma
+
+05/06/2022
+update: tambahan fungsi trigonometri (sin, cos, tan) dalam bentuk derajat
