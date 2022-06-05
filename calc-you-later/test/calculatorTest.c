@@ -30,8 +30,8 @@ void chooseMenu(){
 		gotoxy(45,8);printf("==== CALC - YOU - LATER ===="); 
 		gotoxy(45,9);printf("============================");
 		gotoxy(52,11);printf("1. Calculator"); 
-		gotoxy(49,12);printf("2. Biner to Decimal"); 
-		gotoxy(49,13);printf("3. Decimal to Biner"); 
+		gotoxy(49,12);printf("2. Biner ke Desimal"); 
+		gotoxy(49,13);printf("3. Desimal ke Biner"); 
 		gotoxy(54,14);printf("4. Quit"); 
 		gotoxy(48,18);printf("------ Main Menu ------");
 		gotoxy(47,16);printf("Masukkan Pilihan anda : "); 
@@ -197,7 +197,7 @@ void menu_decToBin(){
 	gotoxy(41,4);printf("-Pengubah Bilangan Desimal ke Biner-");
 	gotoxy(75,7); printf("Notes:");
 	gotoxy(75,8); printf("Program tidak akan memproses inputan salah");
-	gotoxy(75,9); printf("(selain dari bilangan numerik integer)");
+	gotoxy(75,9); printf("(selain dari bilangan bulat positif)");
 	gotoxy(0,7);
 	printf("\nMasukkan desimal yang akan dikonversi (Bilangan bulat positif): \n"); 
 	scanf("%d", &desimal);
@@ -257,7 +257,7 @@ void printUI(){
 	gotoxy(75,25); printf("3. Akar");
 	gotoxy(75,26); printf("4. Trigonometri dan Logaritma");
 	gotoxy(75,27); printf("5. Kali dan bagi");
-	gotoxy(75,28); printf("6. Tambah dan kurung");
+	gotoxy(75,28); printf("6. Tambah dan kurang");
 
 	gotoxy(0,5);
 }
